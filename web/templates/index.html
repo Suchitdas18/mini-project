@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate-Speech Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="icon">🛡️</span>
+                    Hate-Speech Detection System
+                </h1>
+                <p class="subtitle">Advanced continual learning-powered content moderation</p>
+            </div>
+            <div class="status-badge" id="statusBadge">
+                <span class="status-dot"></span>
+                <span class="status-text">Checking...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-grid">
+                <!-- Input Section -->
+                <section class="card input-section">
+                    <h2 class="card-title">
+                        <span class="icon-small">✏️</span>
+                        Enter Text to Analyze
+                    </h2>
+
+                    <textarea id="textInput" class="text-input"
+                        placeholder="Type or paste text here to check for hate-speech content..." rows="6"></textarea>
+
+                    <div class="button-group">
+                        <button id="analyzeBtn" class="btn btn-primary">
+                            <span class="btn-text">Analyze Text</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                        <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                    </div>
+
+                    <!-- Examples -->
+                    <div class="examples-section">
+                        <p class="examples-label">Try these examples:</p>
+                        <div class="examples-grid" id="examplesGrid">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Section -->
+                <section class="card results-section" id="resultsSection">
+                    <h2 class="card-title">
+                        <span class="icon-small">📊</span>
+                        Analysis Results
+                    </h2>
+
+                    <div id="resultsContent">
+                        <div class="empty-state">
+                            <div class="empty-icon">🔍</div>
+                            <p>Enter text and click "Analyze" to see results</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">🧠</div>
+                    <h3>Continual Learning</h3>
+                    <p>Adapts to new hate-speech patterns without forgetting old ones</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🔒</div>
+                    <h3>Privacy-First</h3>
+                    <p>Supports privacy-preserving rehearsal memory modes</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⚡</div>
+                    <h3>Real-Time</h3>
+                    <p>Fast inference with sub-200ms latency</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">📈</div>
+                    <h3>Explainable</h3>
+                    <p>Attention-based interpretability for predictions</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by RoBERTa + Continual Learning (EWC + Knowledge Distillation + Rehearsal)</p>
+            <p class="footer-note">Built with ❤️ for adaptive content moderation</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}?v=2"></script>
+</body>
+
+</html>

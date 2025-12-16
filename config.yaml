@@ -1,0 +1,88 @@
+# Continual Learning System Configuration
+
+model:
+  base_model: "roberta-base"
+  num_labels: 3  # hate_speech, offensive, neutral
+  max_length: 512
+  use_adapters: true
+  adapter_reduction_factor: 16
+
+training:
+  num_epochs: 3
+  batch_size: 32
+  learning_rate: 2.0e-5
+  warmup_steps: 500
+  weight_decay: 0.01
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+continual_learning:
+  drift_threshold: 0.25
+  update_frequency_days: 7
+  lambda_distill: 0.5
+  lambda_ewc: 0.3
+  temperature: 2.0
+  rehearsal_buffer_size: 10000
+  annotation_budget_weekly: 5000
+
+active_learning:
+  uncertainty_threshold: 0.7
+  confidence_range: [0.45, 0.65]
+  diversity_weight: 0.3
+  drift_weight: 0.3
+  novelty_weight: 0.2
+  fairness_weight: 0.2
+
+data:
+  collection_frequency_hours: 1
+  volume_unlabeled_per_day: 100000
+  volume_labeled_per_week: 5000
+  synthetic_adversarial_per_week: 1000
+  validation_split: 0.1
+  test_split: 0.1
+
+rehearsal:
+  strategy: "reservoir_sampling"  # reservoir_sampling, diversity_based
+  privacy_mode: "embedding_only"  # embedding_only, synthetic_replay, prototype_based
+  update_frequency: "quarterly"
+  class_balance:
+    hate_speech: 0.30
+    offensive: 0.20
+    neutral: 0.50
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  max_batch_size: 100
+  timeout_seconds: 30
+  rate_limit_per_minute: 1000
+
+monitoring:
+  use_wandb: true
+  log_interval: 100
+  checkpoint_interval: 1000
+  drift_check_interval: 3600  # seconds
+
+privacy:
+  redact_pii: true
+  anonymize_storage: true
+  retention_days_raw: 7
+  retention_days_labeled: 730
+
+performance_thresholds:
+  min_macro_f1: 0.85
+  min_per_class_recall: 0.80
+  min_high_confidence_precision: 0.95
+  max_backward_transfer: -0.05
+  min_forward_transfer: 0.10
+  max_average_forgetting: 0.03
+  max_inference_latency_ms: 200
+  min_throughput_per_sec: 1000
+
+paths:
+  model_store: "./models"
+  rehearsal_memory: "./data/rehearsal"
+  validation_results: "./results/validation"
+  checkpoints: "./checkpoints"
+  logs: "./logs"
+  cache: "./cache"
