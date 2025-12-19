@@ -18,6 +18,8 @@ avalanche-lib>=0.4.0
 modAL>=0.4.1
 
 # API & Web Framework
+Flask>=3.0.0
+flask-cors>=4.0.0
 fastapi>=0.100.0
 uvicorn>=0.23.0
 pydantic>=2.0.0
@@ -46,3 +48,4 @@ cryptography>=41.0.0
 tqdm>=4.65.0
 python-dotenv>=1.0.0
 pyyaml>=6.0
+gunicorn>=21.2.0
