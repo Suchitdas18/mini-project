@@ -1,0 +1,18 @@
+# Exclude large model files from deployment to save space and memory
+models/
+*.pth
+*.bin
+*.safetensors
+*.h5
+
+# Exclude training data
+data/*.csv
+
+# Exclude unnecessary files
+*.pyc
+__pycache__/
+.git/
+.vscode/
+*.md
+docs/
+tests/
