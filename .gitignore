@@ -52,7 +52,9 @@ data/
 *.json
 *.txt
 !requirements.txt
+!requirements_gradio.txt
 !README.md
+!README_HF.md
 
 # Logs
 logs/
